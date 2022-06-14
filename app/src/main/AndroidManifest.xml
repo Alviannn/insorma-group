@@ -14,7 +14,16 @@
         android:theme="@style/Theme.InSOrma"
         tools:targetApi="31">
         <activity
-            android:name="dev.juviga.insorma.MainActivity"
+            android:name="dev.juviga.insorma.ui.LandingActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="dev.juviga.insorma.ui.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -1,4 +1,4 @@
-package dev.juviga.insorma;
+package dev.juviga.insorma.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
@@ -7,6 +7,7 @@ import androidx.fragment.app.FragmentTransaction;
 import android.os.Bundle;
 import android.view.View;
 
+import dev.juviga.insorma.R;
 import dev.juviga.insorma.ui.home.MainPage;
 import dev.juviga.insorma.ui.profile.ProfilePage;
 import dev.juviga.insorma.ui.transaction.TransactionPage;
