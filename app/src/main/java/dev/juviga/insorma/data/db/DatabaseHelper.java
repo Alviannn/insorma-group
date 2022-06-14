@@ -36,7 +36,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             "    TransactionID INTEGER PRIMARY KEY AUTOINCREMENT," +
             "    UserID INT NOT NULL," +
             "    ProductID INT NOT NULL," +
-            "    TransactionDate DATE NOT NULL," +
+            "    TransactionDate DATETIME NOT NULL," +
             "    Quantity INT NOT NULL," +
             "" +
             "    FOREIGN KEY (UserID) REFERENCES Users (UserID)," +
