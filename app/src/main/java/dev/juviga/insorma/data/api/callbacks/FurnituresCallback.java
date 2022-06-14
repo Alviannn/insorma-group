@@ -33,7 +33,7 @@ public class FurnituresCallback implements Callback<ResponseBody> {
                 Product product = Product.fromJsonObject(rawProduct);
 
                 ProductRepository productRepo = SharedData.PRODUCT_REPOSITORY;
-                productRepo.save(product);
+                productRepo.insert(product);
             }
         } catch (IOException | JSONException e) {
             e.printStackTrace();

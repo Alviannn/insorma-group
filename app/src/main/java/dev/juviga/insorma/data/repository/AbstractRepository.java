@@ -19,7 +19,7 @@ public abstract class AbstractRepository<T> {
         this.helper = SharedData.DATABASE_HELPER;
     }
 
-    public abstract T save(@NonNull T obj);
+    public abstract void insert(@NonNull T obj);
 
     @NonNull
     public abstract T mapResult(Cursor cursor);

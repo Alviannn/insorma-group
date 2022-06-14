@@ -26,7 +26,7 @@ public class TransactionRepository extends AbstractRepository<Transaction> {
     public static final String PRODUCT_ID_COL = "ProductID";
 
     @Override
-    public Transaction save(@NonNull Transaction obj) {
+    public void insert(@NonNull Transaction obj) {
         try (Closer closer = new Closer()) {
             SQLiteDatabase db = closer.add(helper.getWritableDatabase());
             DateFormat formatter = SharedData.SQL_DATE_FORMATTER;
@@ -41,7 +41,6 @@ public class TransactionRepository extends AbstractRepository<Transaction> {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return obj;
     }
 
     @NonNull

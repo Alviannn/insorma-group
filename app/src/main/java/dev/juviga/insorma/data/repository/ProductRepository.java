@@ -23,7 +23,7 @@ public class ProductRepository extends AbstractRepository<Product> {
     public static final String DESCRIPTION_COL = "ProductDescription";
 
     @Override
-    public Product save(@NonNull Product obj) {
+    public void insert(@NonNull Product obj) {
         try (Closer closer = new Closer()) {
             SQLiteDatabase db = closer.add(helper.getWritableDatabase());
 
@@ -38,7 +38,6 @@ public class ProductRepository extends AbstractRepository<Product> {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return obj;
     }
 
     @NonNull

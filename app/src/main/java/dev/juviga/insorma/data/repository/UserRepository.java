@@ -20,7 +20,7 @@ public class UserRepository extends AbstractRepository<User> {
     public static final String PASSWORD_COL = "UserPassword";
 
     @Override
-    public User save(@NonNull User obj) {
+    public void insert(@NonNull User obj) {
         try (Closer closer = new Closer()) {
             SQLiteDatabase db = closer.add(helper.getWritableDatabase());
 
@@ -35,7 +35,6 @@ public class UserRepository extends AbstractRepository<User> {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return obj;
     }
 
     @NonNull
