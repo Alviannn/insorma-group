@@ -35,7 +35,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             "CREATE TABLE IF NOT EXISTS " + TRANSACTIONS_TABLE + " (" +
             "    TransactionID INTEGER PRIMARY KEY AUTOINCREMENT," +
             "    UserID INT NOT NULL," +
-            "    ProductID INT NOT NULL," +
+            "    ProductID VARCHAR(255) NOT NULL," +
             "    TransactionDate DATETIME NOT NULL," +
             "    Quantity INT NOT NULL," +
             "" +
