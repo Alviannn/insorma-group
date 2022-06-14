@@ -1,6 +1,6 @@
 package dev.juviga.insorma.data.model;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class Transaction {
 
