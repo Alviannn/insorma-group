@@ -4,6 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import dev.juviga.insorma.R;
 import dev.juviga.insorma.data.db.DatabaseHelper;
@@ -13,6 +16,10 @@ import dev.juviga.insorma.data.repository.UserRepository;
 import dev.juviga.insorma.data.shared.SharedData;
 
 public class LandingActivity extends AppCompatActivity {
+
+    private Fragment fragment;
+    private FragmentManager fragmentManager;
+    private FragmentTransaction fragmentTransaction;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,8 +33,8 @@ public class LandingActivity extends AppCompatActivity {
         SharedData.TRANSACTION_REPOSITORY = new TransactionRepository();
 
         //coba intent dulu buat cek main activity
-        Intent toMainActivity = new Intent(this, MainActivity.class);
-        startActivity(toMainActivity);
+//        Intent toMainActivity = new Intent(this, MainActivity.class);
+//        startActivity(toMainActivity);
 
     }
 
