@@ -1,4 +1,4 @@
-package dev.gafilianog.insorma.data.model;
+package dev.juviga.insorma.data.model;
 
 public class User {
 

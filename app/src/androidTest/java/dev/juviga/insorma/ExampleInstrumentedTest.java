@@ -1,4 +1,4 @@
-package dev.gafilianog.insorma;
+package dev.juviga.insorma;
 
 import android.content.Context;
 

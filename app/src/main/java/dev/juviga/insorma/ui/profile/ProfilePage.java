@@ -1,4 +1,4 @@
-package dev.gafilianog.insorma.ui.profile;
+package dev.juviga.insorma.ui.profile;
 
 import android.os.Bundle;
 
@@ -8,7 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import dev.gafilianog.insorma.R;
+import dev.juviga.insorma.R;
 
 /**
  * A simple {@link Fragment} subclass.

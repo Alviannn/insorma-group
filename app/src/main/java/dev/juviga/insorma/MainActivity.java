@@ -1,4 +1,4 @@
-package dev.gafilianog.insorma;
+package dev.juviga.insorma;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
@@ -7,9 +7,9 @@ import androidx.fragment.app.FragmentTransaction;
 import android.os.Bundle;
 import android.view.View;
 
-import dev.gafilianog.insorma.ui.home.MainPage;
-import dev.gafilianog.insorma.ui.profile.ProfilePage;
-import dev.gafilianog.insorma.ui.transaction.TransactionPage;
+import dev.juviga.insorma.ui.home.MainPage;
+import dev.juviga.insorma.ui.profile.ProfilePage;
+import dev.juviga.insorma.ui.transaction.TransactionPage;
 
 public class MainActivity extends AppCompatActivity {
 
