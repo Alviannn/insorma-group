@@ -7,6 +7,10 @@ import androidx.fragment.app.FragmentTransaction;
 import android.os.Bundle;
 import android.view.View;
 
+import dev.gafilianog.insorma.ui.home.MainPage;
+import dev.gafilianog.insorma.ui.profile.ProfilePage;
+import dev.gafilianog.insorma.ui.transaction.TransactionPage;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override

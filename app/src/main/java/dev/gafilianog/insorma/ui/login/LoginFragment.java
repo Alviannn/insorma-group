@@ -1,4 +1,4 @@
-package dev.gafilianog.insorma;
+package dev.gafilianog.insorma.ui.login;
 
 import android.os.Bundle;
 
@@ -7,6 +7,8 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import dev.gafilianog.insorma.R;
 
 /**
  * A simple {@link Fragment} subclass.
