@@ -7,6 +7,9 @@ import android.database.sqlite.SQLiteDatabase;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import dev.juviga.insorma.data.db.DatabaseHelper;
 import dev.juviga.insorma.data.model.Product;
 import dev.juviga.insorma.utils.Closer;
@@ -52,7 +55,7 @@ public class ProductRepository extends AbstractRepository<Product> {
     }
 
     @Nullable
-    public Product findProductByName(String name) {
+    public Product findByName(String name) {
         Product product = null;
 
         try (Closer closer = new Closer()) {
@@ -60,7 +63,7 @@ public class ProductRepository extends AbstractRepository<Product> {
             String[] selectionArgs = {name};
 
             SQLiteDatabase db = closer.add(helper.getReadableDatabase());
-            Cursor cursor = closer.add(db.query(DatabaseHelper.USERS_TABLE, null, selection, selectionArgs, null, null, null));
+            Cursor cursor = closer.add(db.query(DatabaseHelper.PRODUCTS_TABLE, null, selection, selectionArgs, null, null, null));
 
             product = this.mapResult(cursor);
         } catch (Exception e) {
@@ -68,6 +71,25 @@ public class ProductRepository extends AbstractRepository<Product> {
         }
 
         return product;
+    }
+
+    @NonNull
+    public List<Product> findAll() {
+        List<Product> list = new ArrayList<>();
+
+        try (Closer closer = new Closer()) {
+            SQLiteDatabase db = closer.add(helper.getReadableDatabase());
+            Cursor cursor = closer.add(db.query(DatabaseHelper.PRODUCTS_TABLE, null, null, null, null, null, null));
+
+            while (cursor.moveToNext()) {
+                Product product = this.mapResult(cursor);
+                list.add(product);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return list;
     }
 
 }
