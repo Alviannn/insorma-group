@@ -5,12 +5,15 @@ import java.text.SimpleDateFormat;
 import java.util.Locale;
 
 import dev.juviga.insorma.data.db.DatabaseHelper;
+import dev.juviga.insorma.data.repository.ProductRepository;
 import dev.juviga.insorma.data.repository.UserRepository;
 
 public class SharedData {
 
     public static DatabaseHelper DATABASE_HELPER;
+
     public static UserRepository USER_REPOSITORY;
+    public static ProductRepository PRODUCT_REPOSITORY;
 
     public final static DateFormat SQL_DATE_FORMATTER;
 
