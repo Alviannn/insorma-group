@@ -5,14 +5,14 @@ public class Product {
     private final String name;
     private final double rating;
     private final int price;
-    private final int image;
+    private final int imageId;
     private final String description;
 
-    public Product(String name, double rating, int price, int image, String description) {
+    public Product(String name, double rating, int price, int imageId, String description) {
         this.name = name;
         this.rating = rating;
         this.price = price;
-        this.image = image;
+        this.imageId = imageId;
         this.description = description;
     }
 
@@ -28,11 +28,12 @@ public class Product {
         return price;
     }
 
-    public int getImage() {
-        return image;
+    public int getImageId() {
+        return imageId;
     }
 
     public String getDescription() {
         return description;
     }
+
 }

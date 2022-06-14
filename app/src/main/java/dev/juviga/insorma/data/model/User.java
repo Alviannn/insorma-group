@@ -3,17 +3,17 @@ package dev.juviga.insorma.data.model;
 public class User {
 
     private final int id;
+    private String username;
+    private final String emailAddress;
     private final String phoneNumber;
     private final String password;
-    private final String emailAddress;
-    private String username;
 
-    public User(int id, String phoneNumber, String password, String emailAddress, String username) {
+    public User(int id, String username, String emailAddress, String phoneNumber, String password) {
         this.id = id;
+        this.username = username;
+        this.emailAddress = emailAddress;
         this.phoneNumber = phoneNumber;
         this.password = password;
-        this.emailAddress = emailAddress;
-        this.username = username;
     }
 
     public int getId() {
