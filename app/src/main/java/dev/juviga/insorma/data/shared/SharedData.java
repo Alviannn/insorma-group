@@ -6,6 +6,7 @@ import java.util.Locale;
 
 import dev.juviga.insorma.data.db.DatabaseHelper;
 import dev.juviga.insorma.data.repository.ProductRepository;
+import dev.juviga.insorma.data.repository.TransactionRepository;
 import dev.juviga.insorma.data.repository.UserRepository;
 
 public class SharedData {
@@ -14,6 +15,7 @@ public class SharedData {
 
     public static UserRepository USER_REPOSITORY;
     public static ProductRepository PRODUCT_REPOSITORY;
+    public static TransactionRepository TRANSACTION_REPOSITORY;
 
     public final static DateFormat SQL_DATE_FORMATTER;
 
