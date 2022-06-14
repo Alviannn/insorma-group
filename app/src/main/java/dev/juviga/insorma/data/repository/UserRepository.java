@@ -61,7 +61,9 @@ public class UserRepository extends AbstractRepository<User> {
             SQLiteDatabase db = closer.add(helper.getReadableDatabase());
             Cursor cursor = closer.add(db.query(DatabaseHelper.USERS_TABLE, null, selection, selectionArgs, null, null, null));
 
-            user = this.mapResult(cursor);
+            if (cursor.moveToNext()) {
+                user = this.mapResult(cursor);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -80,7 +82,9 @@ public class UserRepository extends AbstractRepository<User> {
             SQLiteDatabase db = closer.add(helper.getReadableDatabase());
             Cursor cursor = closer.add(db.query(DatabaseHelper.USERS_TABLE, null, selection, selectionArgs, null, null, null));
 
-            user = this.mapResult(cursor);
+            if (cursor.moveToNext()) {
+                user = this.mapResult(cursor);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }

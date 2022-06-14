@@ -64,7 +64,9 @@ public class ProductRepository extends AbstractRepository<Product> {
             SQLiteDatabase db = closer.add(helper.getReadableDatabase());
             Cursor cursor = closer.add(db.query(DatabaseHelper.PRODUCTS_TABLE, null, selection, selectionArgs, null, null, null));
 
-            product = this.mapResult(cursor);
+            if (cursor.moveToNext()) {
+                product = this.mapResult(cursor);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
