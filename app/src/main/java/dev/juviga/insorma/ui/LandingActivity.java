@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import dev.juviga.insorma.R;
 import dev.juviga.insorma.data.db.DatabaseHelper;
+import dev.juviga.insorma.data.repository.ProductRepository;
 import dev.juviga.insorma.data.repository.UserRepository;
 import dev.juviga.insorma.data.shared.SharedData;
 
@@ -18,12 +19,14 @@ public class LandingActivity extends AppCompatActivity {
         setContentView(R.layout.activity_landing);
 
         SharedData.DATABASE_HELPER = new DatabaseHelper(getApplicationContext());
+
         SharedData.USER_REPOSITORY = new UserRepository();
 
         //coba intent dulu buat cek main activity
         Intent toMainActivity = new Intent(this, MainActivity.class);
         startActivity(toMainActivity);
 
+        SharedData.PRODUCT_REPOSITORY = new ProductRepository();
     }
 
     @Override

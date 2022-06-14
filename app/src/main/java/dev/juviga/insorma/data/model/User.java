@@ -2,7 +2,7 @@ package dev.juviga.insorma.data.model;
 
 public class User {
 
-    private final int id;
+    private int id;
     private String username;
     private final String emailAddress;
     private final String phoneNumber;
@@ -18,6 +18,10 @@ public class User {
 
     public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getPhoneNumber() {
