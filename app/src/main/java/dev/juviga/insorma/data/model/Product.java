@@ -12,7 +12,7 @@ public class Product {
         this.name = name;
         this.rating = rating;
         this.price = price;
-        this.imageId = imageId;
+        this.imageUrl = imageUrl;
         this.description = description;
     }
 
