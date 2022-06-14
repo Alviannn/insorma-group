@@ -1,5 +1,6 @@
 package dev.juviga.insorma.data.repository;
 
+import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
@@ -19,8 +20,22 @@ public class UserRepository extends AbstractRepository<User> {
     public static final String PASSWORD_COL = "UserPassword";
 
     @Override
-    public User save(User value) {
-        return null;
+    public User save(@NonNull User obj) {
+        try (Closer closer = new Closer()) {
+            SQLiteDatabase db = closer.add(helper.getWritableDatabase());
+
+            ContentValues values = new ContentValues();
+            values.put(EMAIL_COL, obj.getEmailAddress());
+            values.put(USERNAME_COL, obj.getUsername());
+            values.put(PHONE_COL, obj.getPhoneNumber());
+            values.put(PASSWORD_COL, obj.getPassword());
+
+            long rowId = db.insertOrThrow(DatabaseHelper.USERS_TABLE, null, values);
+            obj.setId((int) rowId);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return obj;
     }
 
     @NonNull
