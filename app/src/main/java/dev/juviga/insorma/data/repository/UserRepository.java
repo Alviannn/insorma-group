@@ -52,7 +52,7 @@ public class UserRepository extends AbstractRepository<User> {
     }
 
     @Nullable
-    public User findUserByEmail(String email) {
+    public User findByEmail(String email) {
         User user = null;
 
         try (Closer closer = new Closer()) {
@@ -71,7 +71,7 @@ public class UserRepository extends AbstractRepository<User> {
     }
 
     @Nullable
-    public User findUserByUsernameAndEmail(String username, String email) {
+    public User findByUsernameAndEmail(String username, String email) {
         User user = null;
 
         try (Closer closer = new Closer()) {
