@@ -40,4 +40,9 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.replace(R.id.container, new ProfilePage());
         fragmentTransaction.commit();
     }
+
+    public void toAboutPage(View view) {
+        //Lanjut disini gaf
+
+    }
 }

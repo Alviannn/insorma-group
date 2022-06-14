@@ -3,12 +3,21 @@ package dev.juviga.insorma.ui.home;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.sql.Array;
+import java.util.ArrayList;
+import java.util.List;
+
 import dev.juviga.insorma.R;
+import dev.juviga.insorma.data.model.Product;
+import dev.juviga.insorma.ui.adapter.ProductDataAdapter;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -57,10 +66,30 @@ public class MainPage extends Fragment {
         }
     }
 
+    RecyclerView productContainer;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_main_page, container, false);
+        View view = inflater.inflate(R.layout.fragment_main_page, container, false);
+        productContainer = view.findViewById(R.id.productContainer);
+
+        //take data from db
+        List<String>productTitle = new ArrayList<>();
+        for(int i = 0; i < 10; i++){
+            productTitle.add("product ke - " + String.valueOf(i));
+        }
+
+        ProductDataAdapter productDataAdapter = new ProductDataAdapter(inflater.getContext(), productTitle);
+
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(inflater.getContext(), 2, GridLayoutManager.VERTICAL, false);
+        productContainer.setLayoutManager(gridLayoutManager);
+        productContainer.setAdapter(productDataAdapter);
+
+        productDataAdapter.notifyDataSetChanged();
+
+
+        return view;
     }
 }

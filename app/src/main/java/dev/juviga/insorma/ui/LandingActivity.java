@@ -1,5 +1,6 @@
 package dev.juviga.insorma.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,6 +19,11 @@ public class LandingActivity extends AppCompatActivity {
 
         SharedData.DATABASE_HELPER = new DatabaseHelper(getApplicationContext());
         SharedData.USER_REPOSITORY = new UserRepository();
+
+        //coba intent dulu buat cek main activity
+        Intent toMainActivity = new Intent(this, MainActivity.class);
+        startActivity(toMainActivity);
+
     }
 
     @Override
