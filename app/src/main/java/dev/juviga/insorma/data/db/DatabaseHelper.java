@@ -11,8 +11,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String DATABASE_FILENAME = "insorma-group.db";
     public static final int DATABASE_VERSION = 1;
 
+    public static final String USERS_TABLE = "Users";
+    public static final String PRODUCTS_TABLE = "Product";
+    public static final String TRANSACTIONS_TABLE = "\"Transaction\"";
+
     private final String[] TABLE_CREATIONS = {
-            "CREATE TABLE IF NOT EXISTS Users (" +
+            "CREATE TABLE IF NOT EXISTS " + USERS_TABLE + " (" +
             "    UserID INTEGER PRIMARY KEY AUTOINCREMENT," +
             "    UserEmailAddress VARCHAR(255) NOT NULL," +
             "    UserUsername VARCHAR(255) NOT NULL," +
@@ -20,7 +24,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             "    UserPassword VARCHAR(255) NOT NULL" +
             ")",
 
-            "CREATE TABLE IF NOT EXISTS Product (" +
+            "CREATE TABLE IF NOT EXISTS " + PRODUCTS_TABLE + " (" +
             "    ProductName VARCHAR(255) PRIMARY KEY," +
             "    ProductRating DOUBLE NOT NULL," +
             "    ProductPrice INT NOT NULL," +
@@ -28,7 +32,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             "    ProductDescription VARCHAR(255) NOT NULL" +
             ")",
 
-            "CREATE TABLE IF NOT EXISTS \"Transaction\" (" +
+            "CREATE TABLE IF NOT EXISTS " + TRANSACTIONS_TABLE + " (" +
             "    TransactionID INTEGER PRIMARY KEY AUTOINCREMENT," +
             "    UserID INT NOT NULL," +
             "    ProductID INT NOT NULL," +
@@ -41,9 +45,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     };
 
     private final String[] TABLE_DELETIONS = {
-            "DROP TABLE IF EXISTS \"Transaction\"",
-            "DROP TABLE IF EXISTS Users",
-            "DROP TABLE IF EXISTS Product",
+            "DROP TABLE IF EXISTS " + TRANSACTIONS_TABLE,
+            "DROP TABLE IF EXISTS " + USERS_TABLE,
+            "DROP TABLE IF EXISTS " + PRODUCTS_TABLE,
     };
 
     public DatabaseHelper(@Nullable Context context) {
