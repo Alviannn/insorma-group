@@ -62,8 +62,11 @@ public class TransactionRepository extends AbstractRepository<Transaction> {
         List<Transaction> list = new ArrayList<>();
 
         try (Closer closer = new Closer()) {
+            String selection = String.format("%s = ?", USER_ID_COL);
+            String[] selectionArgs = {String.valueOf(userId)};
+
             SQLiteDatabase db = closer.add(helper.getReadableDatabase());
-            Cursor cursor = closer.add(db.query(DatabaseHelper.TRANSACTIONS_TABLE, null, null, null, null, null, null));
+            Cursor cursor = closer.add(db.query(DatabaseHelper.TRANSACTIONS_TABLE, null, selection, selectionArgs, null, null, null));
 
             while (cursor.moveToNext()) {
                 Transaction transaction = this.mapResult(cursor);
