@@ -1,5 +1,8 @@
 package dev.juviga.insorma.data.model;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class Product {
 
     private final String name;
@@ -14,6 +17,17 @@ public class Product {
         this.price = price;
         this.imageUrl = imageUrl;
         this.description = description;
+    }
+
+    public static Product fromJsonObject(JSONObject json) throws JSONException {
+        String name = json.getString("product_name");
+        String image = json.getString("image");
+        String description = json.getString("description");
+
+        int price = json.getInt("price");
+        double rating = json.getDouble("rating");
+
+        return new Product(name, rating, price, image, description);
     }
 
     public String getName() {
