@@ -37,7 +37,8 @@ public class TransactionRepository extends AbstractRepository<Transaction> {
             values.put(USER_ID_COL, obj.getUserId());
             values.put(PRODUCT_ID_COL, obj.getProductId());
 
-            db.insertOrThrow(DatabaseHelper.TRANSACTIONS_TABLE, null, values);
+            long rowId = db.insertOrThrow(DatabaseHelper.TRANSACTIONS_TABLE, null, values);
+            obj.setId((int) rowId);
         } catch (Exception e) {
             e.printStackTrace();
         }
