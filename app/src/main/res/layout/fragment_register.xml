@@ -1,175 +1,155 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="32dp"
+    android:fillViewport="true"
     tools:context=".ui.register.RegisterFragment">
 
-    <ImageView
-        android:id="@+id/img_logo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:contentDescription="@string/desc_logo"
-        android:src="@drawable/logo"
-        app:layout_constraintBottom_toTopOf="@id/til_email_register"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_chainStyle="packed" />
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/til_email_register"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:textColorHint="?attr/colorOutline"
-        app:boxCornerRadiusBottomEnd="@dimen/dp_radius"
-        app:boxCornerRadiusBottomStart="@dimen/dp_radius"
-        app:boxCornerRadiusTopEnd="@dimen/dp_radius"
-        app:boxCornerRadiusTopStart="@dimen/dp_radius"
-        app:errorEnabled="true"
-        app:layout_constraintBottom_toTopOf="@id/til_username_register"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/img_logo"
-        app:startIconDrawable="@drawable/ic_outline_email_24"
-        app:startIconTint="?attr/colorOutline">
+        android:gravity="center"
+        android:maxHeight="300dp"
+        android:orientation="vertical"
+        android:padding="@dimen/normal_distance">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/et_email_register"
+        <ImageView
+            android:id="@+id/img_logo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/desc_logo"
+            android:src="@drawable/logo" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_email_register"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:hint="@string/hint_email"
-            android:inputType="textEmailAddress" />
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/normal_distance"
+            android:textColorHint="?attr/colorOutline"
+            app:boxCornerRadiusBottomEnd="@dimen/round_corners"
+            app:boxCornerRadiusBottomStart="@dimen/round_corners"
+            app:boxCornerRadiusTopEnd="@dimen/round_corners"
+            app:boxCornerRadiusTopStart="@dimen/round_corners"
+            app:errorEnabled="true"
+            app:startIconDrawable="@drawable/ic_outline_email_24"
+            app:startIconTint="?attr/colorOutline">
 
-    </com.google.android.material.textfield.TextInputLayout>
+            <EditText
+                android:id="@+id/et_email_register"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autofillHints="emailAddress"
+                android:hint="@string/hint_email"
+                android:inputType="textEmailAddress"
+                tools:ignore="SpeakableTextPresentCheck" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/til_username_register"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColorHint="?attr/colorOutline"
-        app:boxCornerRadiusBottomEnd="@dimen/dp_radius"
-        app:boxCornerRadiusBottomStart="@dimen/dp_radius"
-        app:boxCornerRadiusTopEnd="@dimen/dp_radius"
-        app:boxCornerRadiusTopStart="@dimen/dp_radius"
-        app:errorEnabled="true"
-        app:layout_constraintBottom_toTopOf="@id/til_phone_register"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/til_email_register"
-        app:startIconDrawable="@drawable/ic_baseline_person_outline_24"
-        app:startIconTint="?attr/colorOutline">
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/et_username_register"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_username_register"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:hint="@string/hint_username"
-            android:inputType="text" />
+            android:layout_height="wrap_content"
+            android:textColorHint="?attr/colorOutline"
+            app:boxCornerRadiusBottomEnd="@dimen/round_corners"
+            app:boxCornerRadiusBottomStart="@dimen/round_corners"
+            app:boxCornerRadiusTopEnd="@dimen/round_corners"
+            app:boxCornerRadiusTopStart="@dimen/round_corners"
+            app:errorEnabled="true"
+            app:startIconDrawable="@drawable/ic_baseline_person_outline_24"
+            app:startIconTint="?attr/colorOutline">
 
-    </com.google.android.material.textfield.TextInputLayout>
+            <EditText
+                android:id="@+id/et_username_register"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autofillHints="username"
+                android:hint="@string/hint_username"
+                android:inputType="text"
+                tools:ignore="SpeakableTextPresentCheck" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/til_phone_register"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColorHint="?attr/colorOutline"
-        app:boxCornerRadiusBottomEnd="@dimen/dp_radius"
-        app:boxCornerRadiusBottomStart="@dimen/dp_radius"
-        app:boxCornerRadiusTopEnd="@dimen/dp_radius"
-        app:boxCornerRadiusTopStart="@dimen/dp_radius"
-        app:errorEnabled="true"
-        app:layout_constraintBottom_toTopOf="@id/til_password_register"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/til_username_register"
-        app:startIconDrawable="@drawable/ic_baseline_smartphone_24"
-        app:startIconTint="?attr/colorOutline">
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/et_phone_register"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_phone_register"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:hint="@string/hint_phone_number"
-            android:inputType="phone" />
+            android:layout_height="wrap_content"
+            android:textColorHint="?attr/colorOutline"
+            app:boxCornerRadiusBottomEnd="@dimen/round_corners"
+            app:boxCornerRadiusBottomStart="@dimen/round_corners"
+            app:boxCornerRadiusTopEnd="@dimen/round_corners"
+            app:boxCornerRadiusTopStart="@dimen/round_corners"
+            app:errorEnabled="true"
+            app:startIconDrawable="@drawable/ic_baseline_smartphone_24"
+            app:startIconTint="?attr/colorOutline">
 
-    </com.google.android.material.textfield.TextInputLayout>
+            <EditText
+                android:id="@+id/et_phone_register"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autofillHints="phone"
+                android:hint="@string/hint_phone_number"
+                android:inputType="phone"
+                tools:ignore="SpeakableTextPresentCheck" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/til_password_register"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColorHint="?attr/colorOutline"
-        app:boxCornerRadiusBottomEnd="@dimen/dp_radius"
-        app:boxCornerRadiusBottomStart="@dimen/dp_radius"
-        app:boxCornerRadiusTopEnd="@dimen/dp_radius"
-        app:boxCornerRadiusTopStart="@dimen/dp_radius"
-        app:endIconMode="password_toggle"
-        app:endIconTint="?attr/colorOutline"
-        app:errorEnabled="true"
-        app:layout_constraintBottom_toTopOf="@id/btn_register"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/til_phone_register"
-        app:startIconDrawable="@drawable/ic_outline_lock_24"
-        app:startIconTint="?attr/colorOutline">
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/et_password_register"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_password_register"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:hint="@string/hint_password"
-            android:inputType="textEmailAddress" />
+            android:layout_height="wrap_content"
+            android:textColorHint="?attr/colorOutline"
+            app:boxCornerRadiusBottomEnd="@dimen/round_corners"
+            app:boxCornerRadiusBottomStart="@dimen/round_corners"
+            app:boxCornerRadiusTopEnd="@dimen/round_corners"
+            app:boxCornerRadiusTopStart="@dimen/round_corners"
+            app:endIconMode="password_toggle"
+            app:endIconTint="?attr/colorOutline"
+            app:errorEnabled="true"
+            app:startIconDrawable="@drawable/ic_outline_lock_24"
+            app:startIconTint="?attr/colorOutline">
 
-    </com.google.android.material.textfield.TextInputLayout>
+            <EditText
+                android:id="@+id/et_password_register"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autofillHints="password"
+                android:hint="@string/hint_password"
+                android:inputType="textPassword"
+                tools:ignore="SpeakableTextPresentCheck" />
 
-    <Button
-        android:id="@+id/btn_register"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="@string/text_register"
-        app:cornerRadius="@dimen/dp_radius"
-        app:layout_constraintBottom_toTopOf="@id/tv_ask_account_login"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/til_password_register" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-    <TextView
-        android:id="@+id/tv_ask_account_login"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="@string/text_ask_login"
-        android:textColor="?attr/colorOutline"
-        app:layout_constraintBottom_toTopOf="@id/btn_move_login"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btn_register" />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_register"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/tiny_distance"
+            android:text="@string/text_register"
+            android:textSize="16sp"
+            app:cornerRadius="@dimen/round_corners"
+            tools:ignore="TextContrastCheck" />
 
-    <Button
-        android:id="@+id/btn_move_login"
-        style="@style/Widget.Material3.Button.OutlinedButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/text_login"
-        android:textColor="?attr/colorPrimary"
-        android:textSize="15sp"
-        app:cornerRadius="@dimen/dp_radius"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_ask_account_login"
-        app:strokeColor="?attr/colorPrimary" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/tv_ask_account_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/small_distance"
+            android:textColorHint="?attr/colorOutline"
+            android:text="@string/text_ask_login" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_move_login"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/text_login"
+            android:textSize="16sp"
+            app:cornerRadius="@dimen/round_corners"
+            app:strokeColor="?attr/colorPrimary"
+            tools:ignore="TextContrastCheck" />
+
+    </LinearLayout>
+
+</ScrollView>

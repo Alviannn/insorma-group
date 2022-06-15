@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="dp_radius">10dp</dimen>
+    <dimen name="tiny_distance">8dp</dimen>
+    <dimen name="small_distance">16dp</dimen>
+    <dimen name="normal_distance">32dp</dimen>
+    <dimen name="large_distance">64dp</dimen>
+    <dimen name="round_corners">10dp</dimen>
 </resources>

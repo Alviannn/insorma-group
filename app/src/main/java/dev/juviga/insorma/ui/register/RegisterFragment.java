@@ -73,14 +73,13 @@ public class RegisterFragment extends Fragment {
     }
 
     private void validate(String email, String username, String phone, String password) {
-        boolean isEmailOk, isUsernameOk, isPasswordOk, isUnique;
+        boolean isEmailOk, isUsernameOk, isPasswordOk;
 
         isEmailOk = RegisterValidation.isEmailOk(email, tilEmail);
         isUsernameOk = RegisterValidation.isUsernameOk(username, tilUsername);
         isPasswordOk = RegisterValidation.isPasswordOk(password, tilPassword);
-        isUnique = RegisterValidation.isUnique(username, email, tilUsername, tilEmail);
 
-        if (isEmailOk && isUsernameOk && isPasswordOk && isUnique) {
+        if (isEmailOk && isUsernameOk && isPasswordOk) {
             SharedData.USER_REPOSITORY.insert(
                     new User(0, username, email, phone, password)
             );

@@ -72,12 +72,12 @@ public class UserRepository extends AbstractRepository<User> {
     }
 
     @Nullable
-    public User findByUsernameAndEmail(String username, String email) {
+    public User findByUsername(String username) {
         User user = null;
 
         try (Closer closer = new Closer()) {
-            String selection = String.format("%s = ? AND %s = ?", USERNAME_COL, EMAIL_COL);
-            String[] selectionArgs = {username, email};
+            String selection = String.format("%s = ?", USERNAME_COL);
+            String[] selectionArgs = {username};
 
             SQLiteDatabase db = closer.add(helper.getReadableDatabase());
             Cursor cursor = closer.add(db.query(DatabaseHelper.USERS_TABLE, null, selection, selectionArgs, null, null, null));
