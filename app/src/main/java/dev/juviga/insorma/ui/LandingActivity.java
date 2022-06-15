@@ -43,6 +43,15 @@ public class LandingActivity extends AppCompatActivity {
 //
 //        FurnitureService service = retrofit.create(FurnitureService.class);
 //        service.getFurnitures().enqueue(new FurnituresCallback());
+
+        // TODO: use code for sending SMS, needs confirmation about phone number
+//        int permission = this.checkSelfPermission(Manifest.permission.SEND_SMS);
+//        if (permission != PackageManager.PERMISSION_GRANTED) {
+//            this.requestPermissions(new String[]{Manifest.permission.SEND_SMS}, 1);
+//        }
+//
+//        SmsService service = new SmsService(this.getApplicationContext());
+//        service.sendMessage(SharedData.EMULATOR_PHONE_NUMBER, "hello world");
     }
 
     @Override

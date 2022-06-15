@@ -18,6 +18,7 @@ public class SharedData {
     public static TransactionRepository TRANSACTION_REPOSITORY;
 
     public final static DateFormat SQL_DATE_FORMATTER;
+    public final static String EMULATOR_PHONE_NUMBER = "+1-555-521-5554";
 
     static {
         String dateFormat = "yyyy-MM-dd HH:mm:ss";

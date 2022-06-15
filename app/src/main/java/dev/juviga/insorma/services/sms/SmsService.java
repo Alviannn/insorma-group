@@ -9,7 +9,7 @@ public class SmsService {
     private final SmsManager manager;
     private final Context context;
 
-    private SmsService(Context context) {
+    public SmsService(Context context) {
         this.context = context;
         this.manager = SmsManager.getDefault();
     }
