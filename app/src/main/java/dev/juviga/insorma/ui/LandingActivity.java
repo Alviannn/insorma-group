@@ -1,5 +1,6 @@
 package dev.juviga.insorma.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -32,8 +33,8 @@ public class LandingActivity extends AppCompatActivity {
         SharedData.TRANSACTION_REPOSITORY = new TransactionRepository();
 
         //coba intent dulu buat cek main activity
-//        Intent toMainActivity = new Intent(this, MainActivity.class);
-//        startActivity(toMainActivity);
+        Intent toMainActivity = new Intent(this, MainActivity.class);
+        startActivity(toMainActivity);
 
         // TODO: use code on home view
 //        Retrofit retrofit = new Retrofit.Builder()

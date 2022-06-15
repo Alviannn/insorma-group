@@ -17,6 +17,7 @@ import java.util.List;
 
 import dev.juviga.insorma.R;
 import dev.juviga.insorma.data.model.Product;
+import dev.juviga.insorma.data.repository.ProductRepository;
 import dev.juviga.insorma.ui.adapter.ProductDataAdapter;
 
 /**
@@ -76,12 +77,18 @@ public class MainPage extends Fragment {
         productContainer = view.findViewById(R.id.productContainer);
 
         //take data from db
-        List<String>productTitle = new ArrayList<>();
-        for(int i = 0; i < 10; i++){
-            productTitle.add("product ke - " + String.valueOf(i));
-        }
+        List<Product>products = new ArrayList<>();
+        ProductRepository productRepository = new ProductRepository();
 
-        ProductDataAdapter productDataAdapter = new ProductDataAdapter(inflater.getContext(), productTitle);
+//        for(int i = 0; i < 10; i++){
+//            Product newProduct = new Product("Product ke - " + i, 5.0, 500000, "null", "Ini barang mewah bro");
+//            productRepository.insert(newProduct);
+//        }
+
+        products = productRepository.findAll();
+
+
+        ProductDataAdapter productDataAdapter = new ProductDataAdapter(inflater.getContext(), products);
 
         GridLayoutManager gridLayoutManager = new GridLayoutManager(inflater.getContext(), 2, GridLayoutManager.VERTICAL, false);
         productContainer.setLayoutManager(gridLayoutManager);

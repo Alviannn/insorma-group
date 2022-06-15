@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -12,14 +13,15 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import dev.juviga.insorma.R;
+import dev.juviga.insorma.data.model.Product;
 
 public class ProductDataAdapter extends RecyclerView.Adapter<ProductDataAdapter.HolderData> {
 
-    List<String>productTitle;
+    List<Product>products;
     LayoutInflater inflater;
 
-    public ProductDataAdapter(Context context, List<String>productTitle) {
-        this.productTitle = productTitle;
+    public ProductDataAdapter(Context context, List<Product>products) {
+        this.products = products;
         inflater = LayoutInflater.from(context);
     }
 
@@ -32,21 +34,27 @@ public class ProductDataAdapter extends RecyclerView.Adapter<ProductDataAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull HolderData holder, int position) {
-        holder.productTitle.setText(productTitle.get(position));
+        holder.productTitle.setText(products.get(position).getName());
+        holder.productPrice.setText(String.valueOf(products.get(position).getPrice()));
+        holder.productRating.setText(String.valueOf(products.get(position).getRating()));
     }
 
     @Override
     public int getItemCount() {
-        return productTitle.size();
+        return products.size();
     }
 
     public class HolderData extends RecyclerView.ViewHolder {
 
-        TextView productTitle;
+        TextView productTitle, productPrice, productRating;
+        LinearLayout productContainer;
 
         public HolderData(@NonNull View itemView) {
             super(itemView);
             productTitle = itemView.findViewById(R.id.productTitle);
+            productPrice = itemView.findViewById(R.id.productPrice);
+            productRating = itemView.findViewById(R.id.productRating);
+            productContainer = itemView.findViewById(R.id.productContainer);
         }
     }
 }
