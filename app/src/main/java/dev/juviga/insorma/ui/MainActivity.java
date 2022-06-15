@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -15,10 +16,19 @@ import dev.juviga.insorma.ui.transaction.TransactionPage;
 
 public class MainActivity extends AppCompatActivity {
 
+    private String loggedInUsername, loggedInEmail, loggedInPhone;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        SharedPreferences sp = getApplicationContext().getSharedPreferences("LOGGED_IN_USER", MODE_PRIVATE);
+        loggedInUsername = sp.getString("username", "<<EMPTY>>");
+        loggedInEmail = sp.getString("email", "<<EMPTY>>");
+        loggedInPhone = sp.getString("phone", "<<EMPTY>>");
+
+        Log.d("TestingData", loggedInUsername);
     }
 
     public void toMainPage(View view) {
