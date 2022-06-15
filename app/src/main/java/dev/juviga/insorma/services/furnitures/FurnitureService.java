@@ -1,4 +1,4 @@
-package dev.juviga.insorma.data.api.services;
+package dev.juviga.insorma.services.furnitures;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
