@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.DetailActivity">
+
+
+        <LinearLayout
+            android:id="@+id/imageContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="300sp"
+                android:background="@color/md_theme_dark_primary" />
+
+        </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/titlePriceContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imageContainer"
+        android:layout_marginLeft="10sp"
+        android:layout_marginTop="10sp"
+        android:layout_marginRight="10sp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/titleText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TITLE"
+            android:textColor="#4381C1"
+            android:layout_weight="1"
+            android:textSize="25sp"></TextView>
+
+        <TextView
+            android:id="@+id/priceText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Price"
+            android:textColor="#4381C1"
+            android:layout_weight="2"
+            android:gravity="right"
+            android:textSize="25sp"></TextView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_below="@id/titlePriceContainer"
+        android:id="@+id/ratingContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10sp"
+        android:layout_marginRight="10sp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Rating"
+            android:textColor="#73777F"></TextView>
+
+        <TextView
+            android:id="@+id/ratingText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5sp"
+            android:text="rating"
+            android:textColor="#FFAB5D"></TextView>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/descriptionText"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/quantityBuyContainer"
+        android:layout_below="@id/ratingContainer"
+        android:layout_margin="10sp"
+        android:text="Description"
+        android:textStyle="bold"></TextView>
+
+        <LinearLayout
+            android:id="@+id/quantityBuyContainer"
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="10sp">
+            <EditText
+                android:id="@+id/quantityBox"
+                android:layout_marginLeft="10sp"
+                android:layout_marginRight="10sp"
+                android:layout_width="match_parent"
+                android:layout_weight="3"
+                android:layout_height="50sp"
+                android:inputType="number"
+                android:background="@drawable/outline_quantity"
+                android:hint="Qty"
+                android:textAlignment="center">
+            </EditText>
+            <Button
+                android:id="@+id/buttonBuy"
+                android:layout_marginLeft="10sp"
+                android:layout_marginRight="10sp"
+                android:layout_width="match_parent"
+                android:layout_height="65sp"
+                android:layout_weight="1"
+                android:text="Buy">
+            </Button>
+        </LinearLayout>
+
+</RelativeLayout>

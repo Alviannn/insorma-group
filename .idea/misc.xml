@@ -4,8 +4,12 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/Yonatan Tej/AndroidStudioProjects/insorma-group/app/src/main/res/drawable/outline_product.xml" value="0.295" />
+        <entry key="..\:/Users/Yonatan Tej/AndroidStudioProjects/insorma-group/app/src/main/res/drawable/outline_quantity.xml" value="0.295" />
         <entry key="..\:/Users/Yonatan Tej/AndroidStudioProjects/insorma-group/app/src/main/res/drawable/rounded.xml" value="0.295" />
-        <entry key="..\:/Users/Yonatan Tej/AndroidStudioProjects/insorma-group/app/src/main/res/layout/activity_main.xml" value="0.35280797101449274" />
+        <entry key="..\:/Users/Yonatan Tej/AndroidStudioProjects/insorma-group/app/src/main/res/layout/activity_detail.xml" value="0.25" />
+        <entry key="..\:/Users/Yonatan Tej/AndroidStudioProjects/insorma-group/app/src/main/res/layout/activity_landing.xml" value="0.35280797101449274" />
+        <entry key="..\:/Users/Yonatan Tej/AndroidStudioProjects/insorma-group/app/src/main/res/layout/activity_main.xml" value="0.18" />
+        <entry key="..\:/Users/Yonatan Tej/AndroidStudioProjects/insorma-group/app/src/main/res/layout/fragment_login.xml" value="0.35280797101449274" />
         <entry key="..\:/Users/Yonatan Tej/AndroidStudioProjects/insorma-group/app/src/main/res/layout/fragment_main_page.xml" value="0.35280797101449274" />
         <entry key="..\:/Users/Yonatan Tej/AndroidStudioProjects/insorma-group/app/src/main/res/layout/fragment_profile_page.xml" value="0.35280797101449274" />
         <entry key="..\:/Users/Yonatan Tej/AndroidStudioProjects/insorma-group/app/src/main/res/layout/fragment_transaction_page.xml" value="0.35280797101449274" />

@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -68,6 +69,7 @@ public class MainPage extends Fragment {
     }
 
     RecyclerView productContainer;
+    public static List<Product>products = new ArrayList<>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -76,8 +78,9 @@ public class MainPage extends Fragment {
         View view = inflater.inflate(R.layout.fragment_main_page, container, false);
         productContainer = view.findViewById(R.id.productContainer);
 
+        Log.d("Test fragment", "fragment Main");
+
         //take data from db
-        List<Product>products = new ArrayList<>();
         ProductRepository productRepository = new ProductRepository();
 
 //        for(int i = 0; i < 10; i++){
@@ -88,9 +91,9 @@ public class MainPage extends Fragment {
         products = productRepository.findAll();
 
 
-        ProductDataAdapter productDataAdapter = new ProductDataAdapter(inflater.getContext(), products);
+        ProductDataAdapter productDataAdapter = new ProductDataAdapter(getContext(), products);
 
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(inflater.getContext(), 2, GridLayoutManager.VERTICAL, false);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 2, GridLayoutManager.VERTICAL, false);
         productContainer.setLayoutManager(gridLayoutManager);
         productContainer.setAdapter(productDataAdapter);
 
