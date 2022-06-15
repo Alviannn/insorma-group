@@ -1,4 +1,4 @@
-package dev.juviga.insorma.data.api.callbacks;
+package dev.juviga.insorma.services.furnitures;
 
 import androidx.annotation.NonNull;
 
