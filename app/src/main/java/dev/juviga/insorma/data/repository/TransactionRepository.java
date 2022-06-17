@@ -12,6 +12,7 @@ import java.util.Date;
 import java.util.List;
 
 import dev.juviga.insorma.data.db.DatabaseHelper;
+import dev.juviga.insorma.data.model.Product;
 import dev.juviga.insorma.data.model.Transaction;
 import dev.juviga.insorma.data.shared.SharedData;
 import dev.juviga.insorma.utils.Closer;
@@ -58,8 +59,13 @@ public class TransactionRepository extends AbstractRepository<Transaction> {
         return new Transaction(id, userId, productId, transactionDate, quantity);
     }
 
+    /**
+     * @param userId the owner of the transactions
+     * @param includeProduct {@code false} will make the {@link Transaction#getProduct()} return {@code null}
+     */
     @NonNull
-    public List<Transaction> findAllByUserId(int userId) {
+    public List<Transaction> findAllByUserId(int userId, boolean includeProduct) {
+        ProductRepository productRepo = SharedData.PRODUCT_REPOSITORY;
         List<Transaction> list = new ArrayList<>();
 
         try (Closer closer = new Closer()) {
@@ -71,6 +77,14 @@ public class TransactionRepository extends AbstractRepository<Transaction> {
 
             while (cursor.moveToNext()) {
                 Transaction transaction = this.mapResult(cursor);
+                if (includeProduct) {
+                    Product product = productRepo.findByName(transaction.getProductId());
+                    // product shouldn't be null at this point
+                    assert product != null;
+
+                    transaction.setProduct(product);
+                }
+
                 list.add(transaction);
             }
         } catch (Exception e) {
