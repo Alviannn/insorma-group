@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import dev.juviga.insorma.R;
+import dev.juviga.insorma.data.model.Product;
 import dev.juviga.insorma.data.model.Transaction;
 
 public class TransactionDataAdapter extends RecyclerView.Adapter<TransactionDataAdapter.ViewHolder> {
@@ -57,7 +58,15 @@ public class TransactionDataAdapter extends RecyclerView.Adapter<TransactionData
         }
 
         public void applyData(Transaction data) {
-            // TODO: apply all data, use glide here
+            Product product = data.getProduct();
+            if (product == null) {
+                throw new NullPointerException("`transaction` doesn't populate `product`");
+            }
+
+            // TODO: load the image
+            name.setText(product.getName());
+            rating.setText(product.getRating() + " / 5.0");
+            price.setText("$" + product.getPrice());
         }
 
     }
