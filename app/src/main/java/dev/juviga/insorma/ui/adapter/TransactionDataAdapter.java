@@ -1,5 +1,6 @@
 package dev.juviga.insorma.ui.adapter;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,9 +19,11 @@ import dev.juviga.insorma.data.model.Transaction;
 public class TransactionDataAdapter extends RecyclerView.Adapter<TransactionDataAdapter.ViewHolder> {
 
     private final List<Transaction> transactions;
-
-    public TransactionDataAdapter(List<Transaction> transactions) {
+    Context context;
+    public TransactionDataAdapter(Context context, List<Transaction> transactions) {
         this.transactions = transactions;
+        if(this.transactions.size() == 0) return;
+        this.context = context;
     }
 
     @NonNull

@@ -11,7 +11,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import dev.juviga.insorma.R;
-import dev.juviga.insorma.ui.home.MainPage;
+import dev.juviga.insorma.ui.home.MainFragment;
 
 
 public class DetailActivity extends AppCompatActivity {
@@ -20,7 +20,7 @@ public class DetailActivity extends AppCompatActivity {
     TextView titleText, priceText, ratingText, descriptionText;
     Button buttonBuy;
     EditText quantityBox;
-    int quantity = 0;
+    public static int quantity = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,10 +36,10 @@ public class DetailActivity extends AppCompatActivity {
         buttonBuy = findViewById(R.id.buttonBuy);
 
         //set
-        titleText.setText(MainPage.products.get(productPosition).getName());
-        priceText.setText(String.valueOf(MainPage.products.get(productPosition).getPrice()));
-        ratingText.setText(String.valueOf(MainPage.products.get(productPosition).getRating()));
-        descriptionText.setText(MainPage.products.get(productPosition).getDescription());
+        titleText.setText(MainFragment.products.get(productPosition).getName());
+        priceText.setText(String.valueOf(MainFragment.products.get(productPosition).getPrice()));
+        ratingText.setText(String.valueOf(MainFragment.products.get(productPosition).getRating()));
+        descriptionText.setText(MainFragment.products.get(productPosition).getDescription());
 
         //event
         buttonBuy.setOnClickListener(new View.OnClickListener() {

@@ -11,11 +11,13 @@ import android.view.View;
 
 import dev.juviga.insorma.R;
 import dev.juviga.insorma.ui.about.MapsFragment;
-import dev.juviga.insorma.ui.home.MainPage;
+import dev.juviga.insorma.ui.home.MainFragment;
 import dev.juviga.insorma.ui.profile.ProfileFragment;
-import dev.juviga.insorma.ui.transaction.TransactionPage;
+import dev.juviga.insorma.ui.transaction.TransactionFragment;
 
 public class MainActivity extends AppCompatActivity {
+
+    private String loggedInUsername, loggedInEmail, loggedInPhone;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,10 +25,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         SharedPreferences sp = getApplicationContext().getSharedPreferences("LOGGED_IN_USER", MODE_PRIVATE);
-        String loggedInUsername = sp.getString("username", "<<EMPTY>>");
-//        loggedInEmail = sp.getString("email", "<<EMPTY>>");
-//        loggedInPhone = sp.getString("phone", "<<EMPTY>>");
-//        loggedInPassword = sp.getString("password", "<<EMPTY>>");
+        loggedInUsername = sp.getString("username", "<<EMPTY>>");
+        loggedInEmail = sp.getString("email", "<<EMPTY>>");
+        loggedInPhone = sp.getString("phone", "<<EMPTY>>");
 
         Log.d("TestingData", loggedInUsername);
     }
@@ -34,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
     public void toMainPage(View view) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.container, new MainPage());
+        fragmentTransaction.replace(R.id.container, new MainFragment());
         Log.d("Test fragment", "Masuk");
         fragmentTransaction.commit();
     }
@@ -42,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
     public void toTransactionPage(View view) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.container, new TransactionPage());
+        fragmentTransaction.replace(R.id.container, new TransactionFragment());
         fragmentTransaction.commit();
     }
 

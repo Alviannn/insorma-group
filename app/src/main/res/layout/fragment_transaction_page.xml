@@ -4,9 +4,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
-    tools:context=".ui.transaction.TransactionPage">
+    tools:context=".ui.transaction.TransactionFragment">
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/transactionContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:itemCount="10"
