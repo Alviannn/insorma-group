@@ -126,7 +126,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/tiny_distance"
-            android:text="@string/text_register"
+            android:text="@string/text_btn_register"
             android:textSize="16sp"
             app:cornerRadius="@dimen/round_corners"
             tools:ignore="TextContrastCheck" />
@@ -144,7 +144,7 @@
             style="@style/Widget.Material3.Button.OutlinedButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/text_login"
+            android:text="@string/text_btn_login"
             android:textSize="16sp"
             app:cornerRadius="@dimen/round_corners"
             app:strokeColor="?attr/colorPrimary"

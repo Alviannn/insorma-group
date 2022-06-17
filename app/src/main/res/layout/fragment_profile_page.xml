@@ -1,15 +1,173 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.profile.ProfilePage"
-    android:gravity="center">
+    android:orientation="vertical"
+    tools:context=".ui.profile.ProfileFragment">
 
-    <!-- TODO: Update blank fragment layout -->
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:subtitleTextAppearance="@style/TextAppearance.Material3.ActionBar.Title"
+            app:subtitleTextColor="?attr/colorOnPrimary"
+            app:title="Welcome,"
+            app:titleTextAppearance="@style/TextAppearance.Material3.BodySmall"
+            app:titleTextColor="?attr/colorOnPrimary" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
     <TextView
+        android:id="@+id/tv_email_profile_info"
+        style="@style/TextAppearance.Material3.TitleMedium"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Fragment Profile Page"/>
+        android:layout_marginStart="@dimen/normal_distance"
+        android:layout_marginTop="@dimen/normal_distance"
+        android:text="@string/hint_email"
+        android:textColor="?attr/colorOutline"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/app_bar" />
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/tv_email_profile_content"
+        style="@style/TextAppearance.Material3.TitleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/normal_distance"
+        android:textColor="?attr/colorPrimary"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_email_profile_info"
+        tools:text="john.doe@mail.com" />
+
+    <TextView
+        android:id="@+id/tv_username_profile_info"
+        style="@style/TextAppearance.Material3.TitleMedium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/normal_distance"
+        android:layout_marginTop="@dimen/small_distance"
+        android:text="@string/hint_username"
+        android:textColor="?attr/colorOutline"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_email_profile_content" />
+
+    <TextView
+        android:id="@+id/tv_username_profile_content"
+        style="@style/TextAppearance.Material3.TitleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/normal_distance"
+        android:textColor="?attr/colorPrimary"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_username_profile_info"
+        tools:text="John Doe" />
+
+    <EditText
+        android:id="@+id/et_edit_username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/normal_distance"
+        android:layout_marginEnd="@dimen/normal_distance"
+        android:autofillHints="username"
+        android:inputType="text"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_username_profile_info"
+        tools:ignore="LabelFor" />
+
+    <TextView
+        android:id="@+id/tv_phone_profile_info"
+        style="@style/TextAppearance.Material3.TitleMedium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/normal_distance"
+        android:layout_marginTop="@dimen/small_distance"
+        android:text="@string/hint_phone_number"
+        android:textColor="?attr/colorOutline"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_username_profile_content" />
+
+    <TextView
+        android:id="@+id/tv_phone_profile_content"
+        style="@style/TextAppearance.Material3.TitleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/normal_distance"
+        android:textColor="?attr/colorPrimary"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_phone_profile_info"
+        tools:text="08123456789" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_edit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/normal_distance"
+        android:layout_marginTop="@dimen/large_distance"
+        android:layout_marginEnd="@dimen/normal_distance"
+        android:text="@string/text_btn_edit"
+        android:textSize="16sp"
+        app:cornerRadius="@dimen/round_corners"
+        app:layout_constraintTop_toBottomOf="@id/tv_phone_profile_content"
+        tools:ignore="TextContrastCheck" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_save"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/normal_distance"
+        android:layout_marginTop="@dimen/large_distance"
+        android:layout_marginEnd="@dimen/normal_distance"
+        android:backgroundTint="#1D8F1B"
+        android:text="@string/text_btn_save"
+        android:textSize="16sp"
+        android:visibility="gone"
+        app:cornerRadius="@dimen/round_corners"
+        app:layout_constraintTop_toBottomOf="@id/tv_phone_profile_content"
+        tools:ignore="TextContrastCheck" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_delete"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/normal_distance"
+        android:layout_marginTop="120dp"
+        android:layout_marginEnd="@dimen/normal_distance"
+        android:backgroundTint="?attr/colorError"
+        android:text="@string/text_btn_delete"
+        android:textSize="16sp"
+        app:cornerRadius="@dimen/round_corners"
+        app:layout_constraintTop_toBottomOf="@id/tv_phone_profile_content"
+        tools:ignore="TextContrastCheck" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_logout"
+        style="@style/Widget.Material3.Button.OutlinedButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/normal_distance"
+        android:layout_marginEnd="@dimen/normal_distance"
+        android:layout_marginBottom="@dimen/small_distance"
+        android:text="@string/text_btn_logout"
+        android:textColor="?attr/colorError"
+        android:textSize="16sp"
+        app:cornerRadius="@dimen/round_corners"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:strokeColor="?attr/colorError"
+        tools:ignore="TextContrastCheck" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

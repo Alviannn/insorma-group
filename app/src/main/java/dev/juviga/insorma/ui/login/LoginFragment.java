@@ -83,6 +83,7 @@ public class LoginFragment extends Fragment {
                 spEdit.putString("username", user.getUsername())
                         .putString("email", user.getEmailAddress())
                         .putString("phone", user.getPhoneNumber())
+                        .putString("password", user.getPassword())
                         .apply();
 
                 startActivity(new Intent(getActivity(), MainActivity.class));
