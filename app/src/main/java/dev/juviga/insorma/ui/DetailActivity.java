@@ -6,9 +6,11 @@ import static dev.juviga.insorma.ui.home.MainFragment.products;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -26,6 +28,8 @@ import dev.juviga.insorma.data.model.Transaction;
 import dev.juviga.insorma.data.repository.ProductRepository;
 import dev.juviga.insorma.data.repository.TransactionRepository;
 import dev.juviga.insorma.data.repository.UserRepository;
+import dev.juviga.insorma.data.shared.SharedData;
+import dev.juviga.insorma.services.sms.SmsService;
 import dev.juviga.insorma.ui.home.MainFragment;
 
 
@@ -86,6 +90,14 @@ public class DetailActivity extends AppCompatActivity {
                 transactionRepository.insert(newTransaction);
 
                 currentMenu = 1;
+
+                int permission = DetailActivity.this.checkSelfPermission(Manifest.permission.SEND_SMS);
+                if (permission != PackageManager.PERMISSION_GRANTED) {
+                    DetailActivity.this.requestPermissions(new String[]{Manifest.permission.SEND_SMS}, 1);
+                }
+
+                SmsService service = new SmsService(DetailActivity.this.getApplicationContext());
+                service.sendMessage(SharedData.EMULATOR_PHONE_NUMBER, String.format("You have bought the product!\nProduct Name: %s\nQuantity: %d\nTotal Price: %d x %d = %d", products.get(productPosition).getName(), quantity, products.get(productPosition).getPrice(), quantity, (products.get(productPosition).getPrice() * quantity)));
 
                 Intent toMain = new Intent(DetailActivity.this, MainActivity.class);
                 startActivity(toMain);
