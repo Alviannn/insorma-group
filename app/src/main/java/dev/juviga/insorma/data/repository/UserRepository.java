@@ -37,7 +37,7 @@ public class UserRepository extends AbstractRepository<User> {
         }
     }
 
-    public void updateUser(@NonNull User user) {
+    public void update(@NonNull User user) {
         if (user.getId() <= 0) {
             throw new IllegalStateException("user isn't inserted to db yet");
         }
@@ -54,6 +54,22 @@ public class UserRepository extends AbstractRepository<User> {
             db.update(DatabaseHelper.USERS_TABLE,values,
                     ID_COL + " = ?",
                     new String[]{user.getId() + ""}
+            );
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void delete(int userId) {
+        if (userId <= 0) {
+            throw new IllegalStateException("user isn't inserted to db yet");
+        }
+
+        try (Closer closer = new Closer()) {
+            SQLiteDatabase db = closer.add(helper.getWritableDatabase());
+            db.delete(DatabaseHelper.USERS_TABLE,
+                    ID_COL + " = ?",
+                    new String[]{userId + ""}
             );
         } catch (Exception e) {
             e.printStackTrace();
