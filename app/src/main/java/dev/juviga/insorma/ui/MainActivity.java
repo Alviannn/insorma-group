@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 
 import dev.juviga.insorma.R;
+import dev.juviga.insorma.ui.about.MapsFragment;
 import dev.juviga.insorma.ui.home.MainPage;
 import dev.juviga.insorma.ui.profile.ProfilePage;
 import dev.juviga.insorma.ui.transaction.TransactionPage;
@@ -54,7 +55,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void toAboutPage(View view) {
-        //Lanjut disini gaf
-
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.container, new MapsFragment());
+        fragmentTransaction.commit();
     }
 }
