@@ -22,8 +22,8 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import dev.juviga.insorma.R;
 import dev.juviga.insorma.data.model.User;
-import dev.juviga.insorma.data.repository.UserRepository;
 import dev.juviga.insorma.data.shared.SharedData;
+import dev.juviga.insorma.ui.MainActivity;
 import dev.juviga.insorma.utils.GenericHelper;
 
 public class ProfileFragment extends Fragment implements View.OnClickListener {
@@ -33,7 +33,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
     private EditText etEditUsername;
     private Button btnEdit, btnSave, btnDelete, btnLogout;
     private String loggedInUsername, loggedInEmail, loggedInPhone, loggedInPassword;
-
+    private SharedPreferences sp;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -43,8 +43,8 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        sp = this.getActivity().getSharedPreferences("LOGGED_IN_USER", MODE_PRIVATE);
 
-        SharedPreferences sp = this.getActivity().getSharedPreferences("LOGGED_IN_USER", MODE_PRIVATE);
         loggedInUsername = sp.getString("username", "");
         loggedInEmail = sp.getString("email", "");
         loggedInPhone = sp.getString("phone", "");
@@ -73,8 +73,6 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
-        UserRepository userRepo = SharedData.USER_REPOSITORY;
-
         if (view == btnEdit) {
             tvUsername.setVisibility(View.INVISIBLE);
             etEditUsername.setVisibility(View.VISIBLE);
@@ -85,20 +83,30 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
             String newUsername = etEditUsername.getText().toString().trim();
 
             if (newUsername.length() > 2 && newUsername.length() < 21) {
-                User user = userRepo.findByUsername(newUsername);
+                User user = SharedData.USER_REPOSITORY.findByUsername(newUsername);
 
                 if (user != null) {
                     GenericHelper.toastMaker(getContext(), "Username already exists!");
                 } else {
-                    User currentUser = userRepo.findByUsername(loggedInUsername);
-                    userRepo.updateUsernameById(currentUser.getId(), newUsername);
-
+                    user = SharedData.USER_REPOSITORY.findByUsername(loggedInUsername);
+                    SharedData.USER_REPOSITORY.update(
+                            new User(
+                                    user.getId(),
+                                    newUsername,
+                                    loggedInEmail,
+                                    loggedInPhone,
+                                    loggedInPassword
+                            )
+                    );
                     tvUsername.setVisibility(View.VISIBLE);
                     etEditUsername.setVisibility(View.GONE);
                     toolbar.setSubtitle(newUsername);
                     tvUsername.setText(newUsername);
                     btnSave.setVisibility(View.GONE);
                     btnEdit.setVisibility(View.VISIBLE);
+
+                    SharedPreferences.Editor spEdit = sp.edit();
+                    spEdit.putString("username", newUsername).apply();
                 }
             } else {
                 GenericHelper.toastMaker(getContext(), "Length between 3-20 characters!");
@@ -112,14 +120,14 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
                         // DO NOTHING
                     })
                     .setPositiveButton("Yes", (dialogInterface, i) -> {
-                        User user = userRepo.findByUsername(loggedInUsername);
-                        userRepo.delete(user.getId());
+                        User user = SharedData.USER_REPOSITORY.findByUsername(loggedInUsername);
+                        SharedData.USER_REPOSITORY.delete(user.getId());
                         GenericHelper.toastMaker(getContext(), "Successfully deleted");
                         getActivity().finish();
                     })
                     .show();
         } else if (view == btnLogout) {
-            SharedPreferences sp = this.getActivity().getSharedPreferences("LOGGED_IN_USER", MODE_PRIVATE);
+            sp = this.getActivity().getSharedPreferences("LOGGED_IN_USER", MODE_PRIVATE);
             sp.edit().clear().apply();
 
             Log.d("TestingData", loggedInUsername);
