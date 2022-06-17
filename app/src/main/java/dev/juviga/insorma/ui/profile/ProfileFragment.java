@@ -4,11 +4,6 @@ import static android.content.Context.MODE_PRIVATE;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,13 +12,17 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import dev.juviga.insorma.R;
 import dev.juviga.insorma.data.model.User;
+import dev.juviga.insorma.data.repository.UserRepository;
 import dev.juviga.insorma.data.shared.SharedData;
-import dev.juviga.insorma.ui.MainActivity;
 import dev.juviga.insorma.utils.GenericHelper;
 
 public class ProfileFragment extends Fragment implements View.OnClickListener {
@@ -73,6 +72,8 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
+        UserRepository userRepo = SharedData.USER_REPOSITORY;
+
         if (view == btnEdit) {
             tvUsername.setVisibility(View.INVISIBLE);
             etEditUsername.setVisibility(View.VISIBLE);
@@ -83,21 +84,14 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
             String newUsername = etEditUsername.getText().toString().trim();
 
             if (newUsername.length() > 2 && newUsername.length() < 21) {
-                User user = SharedData.USER_REPOSITORY.findByUsername(newUsername);
+                User user = userRepo.findByUsername(newUsername);
 
                 if (user != null) {
                     GenericHelper.toastMaker(getContext(), "Username already exists!");
                 } else {
-                    user = SharedData.USER_REPOSITORY.findByUsername(loggedInUsername);
-                    SharedData.USER_REPOSITORY.update(
-                            new User(
-                                    user.getId(),
-                                    newUsername,
-                                    loggedInEmail,
-                                    loggedInPhone,
-                                    loggedInPassword
-                            )
-                    );
+                    user = userRepo.findByUsername(loggedInUsername);
+                    userRepo.updateUsernameById(user.getId(), newUsername);
+
                     tvUsername.setVisibility(View.VISIBLE);
                     etEditUsername.setVisibility(View.GONE);
                     toolbar.setSubtitle(newUsername);
