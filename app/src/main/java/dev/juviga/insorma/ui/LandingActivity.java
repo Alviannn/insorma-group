@@ -51,13 +51,13 @@ public class LandingActivity extends AppCompatActivity {
         service.getFurnitures().enqueue(new FurnituresCallback());
 
         // TODO: use code for sending SMS, needs confirmation about phone number
-        int permission = this.checkSelfPermission(Manifest.permission.SEND_SMS);
-        if (permission != PackageManager.PERMISSION_GRANTED) {
-            this.requestPermissions(new String[]{Manifest.permission.SEND_SMS}, 1);
-        }
-
-        SmsService smsService = new SmsService(this.getApplicationContext());
-        smsService.sendMessage(SharedData.EMULATOR_PHONE_NUMBER, "hello world");
+//        int permission = this.checkSelfPermission(Manifest.permission.SEND_SMS);
+//        if (permission != PackageManager.PERMISSION_GRANTED) {
+//            this.requestPermissions(new String[]{Manifest.permission.SEND_SMS}, 1);
+//        }
+//
+//        SmsService service = new SmsService(this.getApplicationContext());
+//        service.sendMessage(SharedData.EMULATOR_PHONE_NUMBER, "hello world");
     }
 
     @Override
