@@ -12,10 +12,13 @@ import android.view.View;
 import dev.juviga.insorma.R;
 import dev.juviga.insorma.data.model.Product;
 import dev.juviga.insorma.data.repository.ProductRepository;
+import dev.juviga.insorma.services.furnitures.FurnitureService;
+import dev.juviga.insorma.services.furnitures.FurnituresCallback;
 import dev.juviga.insorma.ui.about.MapsFragment;
 import dev.juviga.insorma.ui.home.MainFragment;
 import dev.juviga.insorma.ui.profile.ProfileFragment;
 import dev.juviga.insorma.ui.transaction.TransactionFragment;
+import retrofit2.Retrofit;
 
 public class MainActivity extends AppCompatActivity {
 

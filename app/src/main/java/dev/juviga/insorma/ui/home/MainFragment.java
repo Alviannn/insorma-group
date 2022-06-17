@@ -17,7 +17,10 @@ import java.util.List;
 import dev.juviga.insorma.R;
 import dev.juviga.insorma.data.model.Product;
 import dev.juviga.insorma.data.repository.ProductRepository;
+import dev.juviga.insorma.services.furnitures.FurnitureService;
+import dev.juviga.insorma.services.furnitures.FurnituresCallback;
 import dev.juviga.insorma.ui.adapter.ProductDataAdapter;
+import retrofit2.Retrofit;
 
 /**
  * A simple {@link Fragment} subclass.
