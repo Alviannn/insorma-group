@@ -37,6 +37,29 @@ public class UserRepository extends AbstractRepository<User> {
         }
     }
 
+    public void updateUser(@NonNull User user) {
+        if (user.getId() <= 0) {
+            throw new IllegalStateException("user isn't inserted to db yet");
+        }
+
+        try (Closer closer = new Closer()) {
+            SQLiteDatabase db = closer.add(helper.getWritableDatabase());
+
+            ContentValues values = new ContentValues();
+            values.put(EMAIL_COL, user.getEmailAddress());
+            values.put(USERNAME_COL, user.getUsername());
+            values.put(PHONE_COL, user.getPhoneNumber());
+            values.put(PASSWORD_COL, user.getPassword());
+
+            db.update(DatabaseHelper.USERS_TABLE,values,
+                    ID_COL + " = ?",
+                    new String[]{user.getId() + ""}
+            );
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     @NonNull
     @Override
     public User mapResult(Cursor cursor) {
