@@ -10,6 +10,8 @@ import android.util.Log;
 import android.view.View;
 
 import dev.juviga.insorma.R;
+import dev.juviga.insorma.data.model.Product;
+import dev.juviga.insorma.data.repository.ProductRepository;
 import dev.juviga.insorma.ui.about.MapsFragment;
 import dev.juviga.insorma.ui.home.MainFragment;
 import dev.juviga.insorma.ui.profile.ProfileFragment;
@@ -18,6 +20,7 @@ import dev.juviga.insorma.ui.transaction.TransactionFragment;
 public class MainActivity extends AppCompatActivity {
 
     private String loggedInUsername, loggedInEmail, loggedInPhone;
+    public static int currentMenu = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +31,20 @@ public class MainActivity extends AppCompatActivity {
         loggedInUsername = sp.getString("username", "<<EMPTY>>");
         loggedInEmail = sp.getString("email", "<<EMPTY>>");
         loggedInPhone = sp.getString("phone", "<<EMPTY>>");
+
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+        if(currentMenu == 0){
+            //tampilin product list (home)
+            fragmentTransaction.replace(R.id.container, new MainFragment());
+            fragmentTransaction.commit();
+            Log.d("test fragment", "test1");
+        }else if(currentMenu == 1){
+            fragmentTransaction.replace(R.id.container, new TransactionFragment());
+            fragmentTransaction.commit();
+            Log.d("test fragment", "test2");
+        }
 
         Log.d("TestingData", loggedInUsername);
     }

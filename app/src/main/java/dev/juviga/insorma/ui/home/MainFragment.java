@@ -81,12 +81,9 @@ public class MainFragment extends Fragment {
         //take data from db
         ProductRepository productRepository = new ProductRepository();
 
-//        for(int i = 0; i < 10; i++){
-//            Product newProduct = new Product("Product ke - " + i, 5.0, 500000, "null", "Ini barang mewah bro");
-//            productRepository.insert(newProduct);
-//        }
-
         products = productRepository.findAll();
+
+        Log.d("test size", String.valueOf(products.size()));
 
 
         ProductDataAdapter productDataAdapter = new ProductDataAdapter(getContext(), products);

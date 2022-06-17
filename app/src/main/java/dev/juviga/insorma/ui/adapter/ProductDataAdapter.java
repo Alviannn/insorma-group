@@ -6,11 +6,14 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.bumptech.glide.Glide;
 
 import java.util.List;
 
@@ -41,6 +44,9 @@ public class ProductDataAdapter extends RecyclerView.Adapter<ProductDataAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull HolderData holder, int position) {
+        Glide.with(context)
+                .load(products.get(position).getImageUrl())
+                .into(holder.productImage);
         holder.productTitle.setText(products.get(position).getName());
         holder.productPrice.setText(String.valueOf(products.get(position).getPrice()));
         holder.productRating.setText(String.valueOf(products.get(position).getRating()));
@@ -69,6 +75,7 @@ public class ProductDataAdapter extends RecyclerView.Adapter<ProductDataAdapter.
 
         TextView productTitle, productPrice, productRating;
         LinearLayout productContainer;
+        ImageView productImage;
 
         public HolderData(@NonNull View itemView) {
             super(itemView);
@@ -76,6 +83,7 @@ public class ProductDataAdapter extends RecyclerView.Adapter<ProductDataAdapter.
             productPrice = itemView.findViewById(R.id.productPrice);
             productRating = itemView.findViewById(R.id.productRating);
             productContainer = itemView.findViewById(R.id.productContainer);
+            productImage = itemView.findViewById(R.id.productImage);
         }
     }
 }

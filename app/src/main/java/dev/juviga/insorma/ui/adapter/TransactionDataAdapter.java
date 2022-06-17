@@ -10,6 +10,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+
 import java.util.List;
 
 import dev.juviga.insorma.R;
@@ -38,7 +40,7 @@ public class TransactionDataAdapter extends RecyclerView.Adapter<TransactionData
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Transaction transaction = transactions.get(position);
-        holder.applyData(transaction);
+        holder.applyData(context, transaction);
     }
 
     @Override
@@ -60,7 +62,7 @@ public class TransactionDataAdapter extends RecyclerView.Adapter<TransactionData
             this.price = view.findViewById(R.id.product_price);
         }
 
-        public void applyData(Transaction data) {
+        public void applyData(Context context, Transaction data) {
             Product product = data.getProduct();
             if (product == null) {
                 throw new NullPointerException("`transaction` doesn't populate `product`");
@@ -68,8 +70,11 @@ public class TransactionDataAdapter extends RecyclerView.Adapter<TransactionData
 
             // TODO: load the image
             name.setText(product.getName());
-            rating.setText(product.getRating() + " / 5.0");
-            price.setText("$" + product.getPrice());
+            rating.setText(String.valueOf(product.getRating()) + " / 5.0");
+            price.setText("$" + String.valueOf(product.getPrice() * data.getQuantity()));
+            Glide.with(context)
+                    .load(product.getImageUrl())
+                    .into(image);
         }
 
     }

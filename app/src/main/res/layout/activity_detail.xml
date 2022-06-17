@@ -13,9 +13,11 @@
             android:layout_height="wrap_content">
 
             <ImageView
+                android:id="@+id/productImage"
                 android:layout_width="match_parent"
                 android:layout_height="300sp"
-                android:background="@color/md_theme_dark_primary" />
+                android:background="@color/md_theme_dark_primary"
+                android:scaleType="centerCrop"/>
 
         </LinearLayout>
 
