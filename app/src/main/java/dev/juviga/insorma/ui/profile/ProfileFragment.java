@@ -22,8 +22,8 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import dev.juviga.insorma.R;
 import dev.juviga.insorma.data.model.User;
+import dev.juviga.insorma.data.repository.UserRepository;
 import dev.juviga.insorma.data.shared.SharedData;
-import dev.juviga.insorma.ui.MainActivity;
 import dev.juviga.insorma.utils.GenericHelper;
 
 public class ProfileFragment extends Fragment implements View.OnClickListener {
@@ -73,6 +73,8 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
+        UserRepository userRepo = SharedData.USER_REPOSITORY;
+
         if (view == btnEdit) {
             tvUsername.setVisibility(View.INVISIBLE);
             etEditUsername.setVisibility(View.VISIBLE);
@@ -83,20 +85,14 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
             String newUsername = etEditUsername.getText().toString().trim();
 
             if (newUsername.length() > 2 && newUsername.length() < 21) {
-                User user = SharedData.USER_REPOSITORY.findByUsername(newUsername);
+                User user = userRepo.findByUsername(newUsername);
 
                 if (user != null) {
                     GenericHelper.toastMaker(getContext(), "Username already exists!");
                 } else {
-                    SharedData.USER_REPOSITORY.update(
-                            new User(
-                                    1,
-                                    newUsername,
-                                    loggedInEmail,
-                                    loggedInPhone,
-                                    loggedInPassword
-                            )
-                    );
+                    User currentUser = userRepo.findByUsername(loggedInUsername);
+                    userRepo.updateUsernameById(currentUser.getId(), newUsername);
+
                     tvUsername.setVisibility(View.VISIBLE);
                     etEditUsername.setVisibility(View.GONE);
                     toolbar.setSubtitle(newUsername);
@@ -116,8 +112,8 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
                         // DO NOTHING
                     })
                     .setPositiveButton("Yes", (dialogInterface, i) -> {
-                        User user = SharedData.USER_REPOSITORY.findByUsername(loggedInUsername);
-                        SharedData.USER_REPOSITORY.delete(user.getId());
+                        User user = userRepo.findByUsername(loggedInUsername);
+                        userRepo.delete(user.getId());
                         GenericHelper.toastMaker(getContext(), "Successfully deleted");
                         getActivity().finish();
                     })

@@ -29,6 +29,10 @@ public class Transaction {
         this.quantity = quantity;
     }
 
+    public Transaction(int userId, String productId, Date transactionDate, int quantity) {
+        this(0, userId, productId, transactionDate, quantity);
+    }
+
     public int getId() {
         return id;
     }

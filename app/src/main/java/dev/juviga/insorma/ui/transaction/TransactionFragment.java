@@ -19,6 +19,7 @@ import dev.juviga.insorma.R;
 import dev.juviga.insorma.data.model.Transaction;
 import dev.juviga.insorma.data.repository.TransactionRepository;
 import dev.juviga.insorma.data.repository.UserRepository;
+import dev.juviga.insorma.data.shared.SharedData;
 import dev.juviga.insorma.ui.adapter.TransactionDataAdapter;
 
 /**
@@ -82,8 +83,8 @@ public class TransactionFragment extends Fragment {
         SharedPreferences sp = this.getActivity().getSharedPreferences("LOGGED_IN_USER", Context.MODE_PRIVATE);
         String loggedInUsername = sp.getString("username", "");
 
-        UserRepository userRepository = new UserRepository();
-        int idUser = userRepository.findByUsername(loggedInUsername).getId();
+        UserRepository userRepo = SharedData.USER_REPOSITORY;
+        int idUser = userRepo.findByUsername(loggedInUsername).getId();
 
         TransactionRepository transactionRepository = new TransactionRepository();
         transactions = transactionRepository.findAllByUserId(idUser, true);
