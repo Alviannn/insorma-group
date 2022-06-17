@@ -8,7 +8,7 @@
     android:background="@color/md_theme_light_surfaceVariant">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/product_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
@@ -26,10 +26,11 @@
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintStart_toEndOf="@+id/product_image"
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
+            android:id="@+id/product_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
@@ -38,6 +39,7 @@
             android:textColor="@color/md_theme_dark_shadow"/>
 
         <TextView
+            android:id="@+id/product_rating"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="RATING"
@@ -45,6 +47,7 @@
     </LinearLayout>
 
     <TextView
+        android:id="@+id/product_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="PRICE"
@@ -56,7 +59,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintStart_toEndOf="@+id/product_image"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
         app:layout_constraintVertical_bias="1.0" />
 
