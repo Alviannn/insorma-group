@@ -33,7 +33,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
     private EditText etEditUsername;
     private Button btnEdit, btnSave, btnDelete, btnLogout;
     private String loggedInUsername, loggedInEmail, loggedInPhone, loggedInPassword;
-
+    private SharedPreferences sp;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -43,8 +43,8 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        sp = this.getActivity().getSharedPreferences("LOGGED_IN_USER", MODE_PRIVATE);
 
-        SharedPreferences sp = this.getActivity().getSharedPreferences("LOGGED_IN_USER", MODE_PRIVATE);
         loggedInUsername = sp.getString("username", "");
         loggedInEmail = sp.getString("email", "");
         loggedInPhone = sp.getString("phone", "");
@@ -88,9 +88,10 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
                 if (user != null) {
                     GenericHelper.toastMaker(getContext(), "Username already exists!");
                 } else {
+                    user = SharedData.USER_REPOSITORY.findByUsername(loggedInUsername);
                     SharedData.USER_REPOSITORY.update(
                             new User(
-                                    1,
+                                    user.getId(),
                                     newUsername,
                                     loggedInEmail,
                                     loggedInPhone,
@@ -103,6 +104,9 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
                     tvUsername.setText(newUsername);
                     btnSave.setVisibility(View.GONE);
                     btnEdit.setVisibility(View.VISIBLE);
+
+                    SharedPreferences.Editor spEdit = sp.edit();
+                    spEdit.putString("username", newUsername).apply();
                 }
             } else {
                 GenericHelper.toastMaker(getContext(), "Length between 3-20 characters!");
@@ -123,7 +127,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
                     })
                     .show();
         } else if (view == btnLogout) {
-            SharedPreferences sp = this.getActivity().getSharedPreferences("LOGGED_IN_USER", MODE_PRIVATE);
+            sp = this.getActivity().getSharedPreferences("LOGGED_IN_USER", MODE_PRIVATE);
             sp.edit().clear().apply();
 
             Log.d("TestingData", loggedInUsername);
