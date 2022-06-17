@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -78,6 +79,7 @@ public class MainFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_main_page, container, false);
         productContainer = view.findViewById(R.id.productContainer);
+        TextView tvEmptyProduct = view.findViewById(R.id.tv_empty_product);
 
         Log.d("Test fragment", "fragment Main");
 
@@ -88,16 +90,18 @@ public class MainFragment extends Fragment {
 
         Log.d("test size", String.valueOf(products.size()));
 
+        if (products.isEmpty()) {
+            tvEmptyProduct.setVisibility(View.VISIBLE);
+            productContainer.setVisibility(View.INVISIBLE);
+        } else {
+            ProductDataAdapter productDataAdapter = new ProductDataAdapter(getContext(), products);
 
-        ProductDataAdapter productDataAdapter = new ProductDataAdapter(getContext(), products);
+            GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 2, GridLayoutManager.VERTICAL, false);
+            productContainer.setLayoutManager(gridLayoutManager);
+            productContainer.setAdapter(productDataAdapter);
 
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 2, GridLayoutManager.VERTICAL, false);
-        productContainer.setLayoutManager(gridLayoutManager);
-        productContainer.setAdapter(productDataAdapter);
-
-        productDataAdapter.notifyDataSetChanged();
-
-
+            productDataAdapter.notifyDataSetChanged();
+        }
         return view;
     }
 }

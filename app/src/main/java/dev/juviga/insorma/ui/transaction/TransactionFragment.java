@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -78,6 +79,7 @@ public class TransactionFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_transaction_page, container, false);
 
+        TextView tvEmptyTr = view.findViewById(R.id.tv_empty_transaction);
         transactionContainer = view.findViewById(R.id.transactionContainer);
 
         SharedPreferences sp = this.getActivity().getSharedPreferences("LOGGED_IN_USER", Context.MODE_PRIVATE);
@@ -89,13 +91,17 @@ public class TransactionFragment extends Fragment {
         TransactionRepository transactionRepository = new TransactionRepository();
         transactions = transactionRepository.findAllByUserId(idUser, true);
 
-        TransactionDataAdapter adapter = new TransactionDataAdapter(getContext(), transactions);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
-        transactionContainer.setLayoutManager(linearLayoutManager);
-        transactionContainer.setAdapter(adapter);
+        if (transactions.isEmpty()) {
+            tvEmptyTr.setVisibility(View.VISIBLE);
+            transactionContainer.setVisibility(View.INVISIBLE);
+        } else {
+            TransactionDataAdapter adapter = new TransactionDataAdapter(getContext(), transactions);
+            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
+            transactionContainer.setLayoutManager(linearLayoutManager);
+            transactionContainer.setAdapter(adapter);
 
-        adapter.notifyDataSetChanged();
-
+            adapter.notifyDataSetChanged();
+        }
         return view;
     }
 }
