@@ -17,6 +17,7 @@ import java.util.List;
 import dev.juviga.insorma.R;
 import dev.juviga.insorma.data.model.Product;
 import dev.juviga.insorma.data.repository.ProductRepository;
+import dev.juviga.insorma.data.shared.SharedData;
 import dev.juviga.insorma.ui.adapter.ProductDataAdapter;
 
 /**
@@ -78,8 +79,7 @@ public class MainFragment extends Fragment {
         Log.d("Test fragment", "fragment Main");
 
         //take data from db
-        ProductRepository productRepository = new ProductRepository();
-
+        ProductRepository productRepository = SharedData.PRODUCT_REPOSITORY;
         products = productRepository.findAll();
 
         Log.d("test size", String.valueOf(products.size()));

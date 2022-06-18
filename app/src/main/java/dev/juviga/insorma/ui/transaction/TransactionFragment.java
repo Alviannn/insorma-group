@@ -85,7 +85,7 @@ public class TransactionFragment extends Fragment {
         UserRepository userRepo = SharedData.USER_REPOSITORY;
         int idUser = userRepo.findByUsername(loggedInUsername).getId();
 
-        TransactionRepository transactionRepository = new TransactionRepository();
+        TransactionRepository transactionRepository = SharedData.TRANSACTION_REPOSITORY;
         transactions = transactionRepository.findAllByUserId(idUser, true);
 
         if (transactions.isEmpty()) {

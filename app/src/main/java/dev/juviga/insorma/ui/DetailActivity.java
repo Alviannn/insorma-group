@@ -19,14 +19,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import dev.juviga.insorma.R;
 import dev.juviga.insorma.data.model.Transaction;
-import dev.juviga.insorma.data.repository.ProductRepository;
 import dev.juviga.insorma.data.repository.TransactionRepository;
 import dev.juviga.insorma.data.repository.UserRepository;
+import dev.juviga.insorma.data.shared.SharedData;
 import dev.juviga.insorma.services.sms.SmsService;
 
 
@@ -62,6 +61,11 @@ public class DetailActivity extends AppCompatActivity {
                 .load(products.get(productPosition).getImageUrl())
                 .into(productImage);
 
+        int permission = this.checkSelfPermission(Manifest.permission.SEND_SMS);
+        if (permission != PackageManager.PERMISSION_GRANTED) {
+            DetailActivity.this.requestPermissions(new String[]{Manifest.permission.SEND_SMS}, 1);
+        }
+
         //event
         buttonBuy.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,26 +77,18 @@ public class DetailActivity extends AppCompatActivity {
                 String loggedInUsername = sp.getString("username", "");
                 String loggedInPhone = sp.getString("phone", "");
 
-                UserRepository userRepository = new UserRepository();
+                UserRepository userRepository = SharedData.USER_REPOSITORY;
                 int idUser = userRepository.findByUsername(loggedInUsername).getId();
 
                 Date date = new Date();
-                SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
-
-                ProductRepository productRepository = new ProductRepository();
                 String productId = products.get(productPosition).getName();
 
                 Transaction newTransaction = new Transaction(0, idUser, productId, date, quantity);
 
-                TransactionRepository transactionRepository = new TransactionRepository();
+                TransactionRepository transactionRepository = SharedData.TRANSACTION_REPOSITORY;
                 transactionRepository.insert(newTransaction);
 
                 currentMenu = 1;
-
-                int permission = DetailActivity.this.checkSelfPermission(Manifest.permission.SEND_SMS);
-                if (permission != PackageManager.PERMISSION_GRANTED) {
-                    DetailActivity.this.requestPermissions(new String[]{Manifest.permission.SEND_SMS}, 1);
-                }
 
                 SmsService service = new SmsService(DetailActivity.this.getApplicationContext());
                 service.sendMessage(loggedInPhone,
