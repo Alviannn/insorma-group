@@ -1,29 +1,24 @@
 package dev.juviga.insorma.ui;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+
 import dev.juviga.insorma.R;
-import dev.juviga.insorma.data.model.Product;
-import dev.juviga.insorma.data.repository.ProductRepository;
-import dev.juviga.insorma.services.furnitures.FurnitureService;
-import dev.juviga.insorma.services.furnitures.FurnituresCallback;
 import dev.juviga.insorma.ui.about.MapsFragment;
 import dev.juviga.insorma.ui.home.MainFragment;
 import dev.juviga.insorma.ui.profile.ProfileFragment;
 import dev.juviga.insorma.ui.transaction.TransactionFragment;
-import retrofit2.Retrofit;
 
 public class MainActivity extends AppCompatActivity {
 
-    private String loggedInUsername, loggedInEmail, loggedInPhone;
     public static int currentMenu = 0;
+    private String loggedInUsername, loggedInEmail, loggedInPhone;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,19 +26,19 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         SharedPreferences sp = getApplicationContext().getSharedPreferences("LOGGED_IN_USER", MODE_PRIVATE);
-        loggedInUsername = sp.getString("username", "<<EMPTY>>");
-        loggedInEmail = sp.getString("email", "<<EMPTY>>");
-        loggedInPhone = sp.getString("phone", "<<EMPTY>>");
+        loggedInUsername = sp.getString("username", "");
+        loggedInEmail = sp.getString("email", "");
+        loggedInPhone = sp.getString("phone", "");
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
-        if(currentMenu == 0){
+        if (currentMenu == 0) {
             //tampilin product list (home)
             fragmentTransaction.replace(R.id.container, new MainFragment());
             fragmentTransaction.commit();
             Log.d("test fragment", "test1");
-        }else if(currentMenu == 1){
+        } else if (currentMenu == 1) {
             fragmentTransaction.replace(R.id.container, new TransactionFragment());
             fragmentTransaction.commit();
             Log.d("test fragment", "test2");
@@ -79,5 +74,10 @@ public class MainActivity extends AppCompatActivity {
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.container, new MapsFragment());
         fragmentTransaction.commit();
+    }
+
+    @Override
+    public void onBackPressed() {
+        // disabled
     }
 }

@@ -16,4 +16,7 @@
     <string name="text_btn_delete">Delete account</string>
     <string name="text_btn_logout">Logout</string>
     <string name="text_btn_save">Save changes</string>
+    <string name="text_no_product">¯\\_(ツ)_/¯\nThere\'s no product</string>
+    <string name="text_no_transaction">¯\\_(ツ)_/¯\nThere\'s no transaction</string>
+    <string name="text_no_maps">¯\\_(ツ)_/¯\nCheck your internet connection</string>
 </resources>

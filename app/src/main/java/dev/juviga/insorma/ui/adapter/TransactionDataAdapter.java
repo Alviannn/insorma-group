@@ -68,10 +68,9 @@ public class TransactionDataAdapter extends RecyclerView.Adapter<TransactionData
                 throw new NullPointerException("`transaction` doesn't populate `product`");
             }
 
-            // TODO: load the image
             name.setText(product.getName());
-            rating.setText(String.valueOf(product.getRating()) + " / 5.0");
-            price.setText("$" + String.valueOf(product.getPrice() * data.getQuantity()));
+            rating.setText(product.getRating() + " / 5.0");
+            price.setText("$" + product.getPrice() * data.getQuantity());
             Glide.with(context)
                     .load(product.getImageUrl())
                     .into(image);

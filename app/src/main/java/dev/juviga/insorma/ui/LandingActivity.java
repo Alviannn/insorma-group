@@ -1,8 +1,5 @@
 package dev.juviga.insorma.ui;
 
-import android.Manifest;
-import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,7 +15,6 @@ import dev.juviga.insorma.data.repository.UserRepository;
 import dev.juviga.insorma.data.shared.SharedData;
 import dev.juviga.insorma.services.furnitures.FurnitureService;
 import dev.juviga.insorma.services.furnitures.FurnituresCallback;
-import dev.juviga.insorma.services.sms.SmsService;
 import retrofit2.Retrofit;
 
 public class LandingActivity extends AppCompatActivity {
@@ -37,27 +33,12 @@ public class LandingActivity extends AppCompatActivity {
         SharedData.USER_REPOSITORY = new UserRepository();
         SharedData.PRODUCT_REPOSITORY = new ProductRepository();
         SharedData.TRANSACTION_REPOSITORY = new TransactionRepository();
-
-        //coba intent dulu buat cek main activity
-//        Intent toMainActivity = new Intent(this, MainActivity.class);
-//        startActivity(toMainActivity);
-
-        // TODO: use code on home view
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://bit.ly/")
                 .build();
 
         FurnitureService service = retrofit.create(FurnitureService.class);
         service.getFurnitures().enqueue(new FurnituresCallback());
-
-        // TODO: use code for sending SMS, needs confirmation about phone number
-//        int permission = this.checkSelfPermission(Manifest.permission.SEND_SMS);
-//        if (permission != PackageManager.PERMISSION_GRANTED) {
-//            this.requestPermissions(new String[]{Manifest.permission.SEND_SMS}, 1);
-//        }
-//
-//        SmsService service = new SmsService(this.getApplicationContext());
-//        service.sendMessage(SharedData.EMULATOR_PHONE_NUMBER, "hello world");
     }
 
     @Override

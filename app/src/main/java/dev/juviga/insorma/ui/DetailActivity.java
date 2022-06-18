@@ -4,11 +4,8 @@ import static dev.juviga.insorma.ui.MainActivity.currentMenu;
 import static dev.juviga.insorma.ui.adapter.ProductDataAdapter.productPosition;
 import static dev.juviga.insorma.ui.home.MainFragment.products;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.Manifest;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
@@ -17,6 +14,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
 
@@ -28,19 +27,17 @@ import dev.juviga.insorma.data.model.Transaction;
 import dev.juviga.insorma.data.repository.ProductRepository;
 import dev.juviga.insorma.data.repository.TransactionRepository;
 import dev.juviga.insorma.data.repository.UserRepository;
-import dev.juviga.insorma.data.shared.SharedData;
 import dev.juviga.insorma.services.sms.SmsService;
-import dev.juviga.insorma.ui.home.MainFragment;
 
 
 public class DetailActivity extends AppCompatActivity {
 
+    public static int quantity = 0;
     //declare
     TextView titleText, priceText, ratingText, descriptionText;
     Button buttonBuy;
     EditText quantityBox;
     ImageView productImage;
-    public static int quantity = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,11 +66,12 @@ public class DetailActivity extends AppCompatActivity {
         buttonBuy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                quantity = Integer.valueOf(quantityBox.getText().toString().trim());
+                quantity = Integer.parseInt(quantityBox.getText().toString().trim());
 
                 //getUserID
                 SharedPreferences sp = getSharedPreferences("LOGGED_IN_USER", Context.MODE_PRIVATE);
                 String loggedInUsername = sp.getString("username", "");
+                String loggedInPhone = sp.getString("phone", "");
 
                 UserRepository userRepository = new UserRepository();
                 int idUser = userRepository.findByUsername(loggedInUsername).getId();
@@ -97,11 +95,18 @@ public class DetailActivity extends AppCompatActivity {
                 }
 
                 SmsService service = new SmsService(DetailActivity.this.getApplicationContext());
-                service.sendMessage(SharedData.EMULATOR_PHONE_NUMBER, String.format("You have bought the product!\nProduct Name: %s\nQuantity: %d\nTotal Price: %d x %d = %d", products.get(productPosition).getName(), quantity, products.get(productPosition).getPrice(), quantity, (products.get(productPosition).getPrice() * quantity)));
+                service.sendMessage(loggedInPhone,
+                        String.format(
+                                "You have bought the product!\nProduct Name: %s\nQuantity: %d\nTotal Price: %d x %d = %d",
+                                products.get(productPosition).getName(),
+                                quantity,
+                                products.get(productPosition).getPrice(),
+                                quantity,
+                                (products.get(productPosition).getPrice() * quantity)
+                        )
+                );
 
-                Intent toMain = new Intent(DetailActivity.this, MainActivity.class);
-                startActivity(toMain);
-
+                finish();
             }
         });
 

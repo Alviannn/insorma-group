@@ -4,26 +4,22 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.google.android.material.textfield.TextInputLayout;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
-import java.util.Objects;
+import com.google.android.material.textfield.TextInputLayout;
 
 import dev.juviga.insorma.R;
 import dev.juviga.insorma.data.model.User;
 import dev.juviga.insorma.data.shared.SharedData;
-import dev.juviga.insorma.ui.LandingActivity;
 import dev.juviga.insorma.ui.MainActivity;
 import dev.juviga.insorma.ui.register.RegisterFragment;
 import dev.juviga.insorma.utils.GenericHelper;

@@ -18,6 +18,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import dev.juviga.insorma.R;
+import dev.juviga.insorma.utils.GenericHelper;
 
 public class MapsFragment extends Fragment {
 
@@ -56,10 +57,11 @@ public class MapsFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        SupportMapFragment mapFragment =
-                (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
+        SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
         if (mapFragment != null) {
             mapFragment.getMapAsync(callback);
+        } else {
+            GenericHelper.toastMaker(getContext(), "Check your internet!");
         }
     }
 }
